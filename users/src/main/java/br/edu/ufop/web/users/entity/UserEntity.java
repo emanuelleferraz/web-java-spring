@@ -31,11 +31,27 @@ public class UserEntity {
     private String city;
 
     private String creditCardNumber;
+
+    // -- Credit Card Network
+
     private EnumUserType type;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private Boolean active;
+
+    @PrePersist
+    public void beforeSave(){
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+        this.active = true;
+    }
+
+    @PreUpdate
+    public void beforeUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 
 }
