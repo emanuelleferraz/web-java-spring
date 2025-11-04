@@ -33,6 +33,9 @@ public class UserEntity {
     private String creditCardNumber;
 
     // -- Credit Card Network
+    @ManyToOne
+    @JoinColumn(name = "credit_card_network_id")
+    private CCNetworkEntity ccNetwork;
 
     private EnumUserType type;
 
