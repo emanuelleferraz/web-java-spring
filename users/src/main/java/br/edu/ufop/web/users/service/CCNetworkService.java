@@ -47,6 +47,12 @@ public class CCNetworkService {
             // Não permite a persistência
             return null;
         }
+        // domain: válid
+        // Domain -> converter para entity
+        CCNetworkEntity entity = CCNetworkConverter.toEntity(domain);
+
+        // Invocar o repository para a persistência
+        return CCNetworkConverter.toDTO(repository.save(entity));
     }
 
     // Update
