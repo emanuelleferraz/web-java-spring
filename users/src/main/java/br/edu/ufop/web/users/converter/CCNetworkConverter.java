@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CCNetworkConverter {
     // DTO de entrada para classe do domínio
-    public CCNetworkDomain toDomain(CreateCreditCardNetworkDTO createCreditCardNetworkDTO) {
+    public static CCNetworkDomain toDomain(CreateCreditCardNetworkDTO createCreditCardNetworkDTO) {
         return CCNetworkDomain.builder()
                 .name(createCreditCardNetworkDTO.name())
                 .build();
@@ -26,7 +26,7 @@ public class CCNetworkConverter {
     }
 
     // Entidade JPA para DTO de saída
-    public CreditCardNetworkDTO toDTO(CCNetworkEntity ccNetworkEntity) {
+    public static CreditCardNetworkDTO toDTO(CCNetworkEntity ccNetworkEntity) {
         return new CreditCardNetworkDTO(ccNetworkEntity.getId(), ccNetworkEntity.getName());
     }
 }
