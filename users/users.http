@@ -1,5 +1,0 @@
-@UrlServer = http://localhost:3000
-###
-GET {{UrlServer}}//users/status
-###
-GET {{UrlServer}}//ccn
