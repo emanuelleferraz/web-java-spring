@@ -29,4 +29,12 @@ public class CCNetworkConverter {
     public static CreditCardNetworkDTO toDTO(CCNetworkEntity ccNetworkEntity) {
         return new CreditCardNetworkDTO(ccNetworkEntity.getId(), ccNetworkEntity.getName());
     }
+
+    // Da entidade JPA para o Domínio
+    public static CCNetworkDomain toDomain(CCNetworkEntity ccNetworkEntity) {
+        return CCNetworkDomain.builder()
+                .id(ccNetworkEntity.getId())
+                .name(ccNetworkEntity.getName())
+                .build();
+    }
 }
