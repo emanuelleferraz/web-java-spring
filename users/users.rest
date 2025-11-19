@@ -8,5 +8,20 @@ POST {{urlServer}}//ccn
 Content-Type: application/json
 
 {
-  "name": "Visa"
+  "name": ""
+}
+
+###
+GET {{urlServer}}/users
+
+###
+POST {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "name": "João Guila",
+  "email": "joao@email.com" ,
+  "password": "joao123",
+  "creditCardNumber": "",
+  "creditCardNetworkId": "dc502d13-1a99-4a4d-892f-a70fd64786da"
 }
