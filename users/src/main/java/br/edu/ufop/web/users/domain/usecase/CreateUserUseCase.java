@@ -23,6 +23,7 @@ public class CreateUserUseCase {
         validateName();
 
         // Demais validações
+        validateCCNetworkId();
     }
 
     private void validateName() {
@@ -31,7 +32,7 @@ public class CreateUserUseCase {
         }
     }
 
-    private void validadeCCNetworkId(){
+    private void validateCCNetworkId(){
         if (this.userDomain.getCcNetwork() == null) {
             throw new RuntimeException("Invalid Credit Card Network");
         }
