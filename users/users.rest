@@ -19,9 +19,9 @@ POST {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "name": "João Guila",
-  "email": "joao@email.com" ,
-  "password": "joao123",
+  "name": "",
+  "email": "" ,
+  "password": "",
   "creditCardNumber": "",
   "creditCardNetworkId": "dc502d13-1a99-4a4d-892f-a70fd64786da"
 }

@@ -37,7 +37,7 @@ public class CreateUserUseCase {
             throw new RuntimeException("Invalid Credit Card Network");
         }
 
-        UUID id = this.userDomain.getId();
+        UUID id = this.userDomain.getCcNetwork().getId();
         if (id == null) {
             throw new RuntimeException("Credit Card Network Id is null");
         }
