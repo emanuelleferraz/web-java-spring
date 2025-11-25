@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
@@ -28,5 +31,15 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody CreateUserDTO createUserDTO) {
         return ResponseEntity.ok(userService.create(createUserDTO));
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDTO> getById(@PathVariable(value = "userId") UUID id) {
+        Optional<UserDTO> userDTOOptional = userService.getById(id);
+        if (userDTOOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(userDTOOptional.get());
     }
 }

@@ -26,6 +26,9 @@ public class CreateUserUseCase {
 
         // Demais validações
         validateCCNetworkId();
+        validateEmail();
+        validateUserType();
+        validatePassword();
     }
 
     private void validateName() {
