@@ -8,7 +8,7 @@ POST {{urlServer}}//ccn
 Content-Type: application/json
 
 {
-  "name": ""
+  "name": "Mastercard"
 }
 
 ###
@@ -19,9 +19,7 @@ POST {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "name": "",
-  "email": "" ,
-  "password": "",
-  "creditCardNumber": "",
-  "creditCardNetworkId": "dc502d13-1a99-4a4d-892f-a70fd64786da"
+  "name": "Fernando",
+
+  "creditCardNetworkId": "4b86bb86-0ad7-4c34-acc0-70fd333f53f8"
 }

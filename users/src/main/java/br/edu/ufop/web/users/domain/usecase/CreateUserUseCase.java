@@ -3,6 +3,8 @@ package br.edu.ufop.web.users.domain.usecase;
 import br.edu.ufop.web.users.domain.CCNetworkDomain;
 import br.edu.ufop.web.users.domain.UserDomain;
 import br.edu.ufop.web.users.domain.port.CCNRepositoryPort;
+import br.edu.ufop.web.users.enums.EnumUserType;
+import br.edu.ufop.web.users.exception.UseCaseException;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -34,19 +36,37 @@ public class CreateUserUseCase {
 
     private void validateCCNetworkId(){
         if (this.userDomain.getCcNetwork() == null) {
-            throw new RuntimeException("Invalid Credit Card Network");
+            throw new UseCaseException("Invalid Credit Card Network");
         }
 
         UUID id = this.userDomain.getCcNetwork().getId();
         if (id == null) {
-            throw new RuntimeException("Credit Card Network Id is null");
+            throw new UseCaseException("Credit Card Network Id is null");
         }
 
         Optional<CCNetworkDomain> domainOptional = repositoryPort.findById(id);
         if (domainOptional.isEmpty()){
-            throw new RuntimeException("Credit Card Network Id does not exist");
+            throw new UseCaseException("Credit Card Network Id does not exist");
         }
 
         this.userDomain.setCcNetwork(domainOptional.get());
+    }
+
+    private void validateEmail() {
+        if (this.userDomain.getEmail() == null) {
+            throw new UseCaseException("E-mail is null");
+        }
+    }
+
+    private void validatePassword() {
+        if (this.userDomain.getPassword() == null) {
+            throw new UseCaseException("Password is null");
+        }
+    }
+
+    private void validateUserType() {
+        if (this.userDomain.getType() == null) {
+            this.userDomain.setType(EnumUserType.CUSTOMER);
+        }
     }
 }
