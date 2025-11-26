@@ -19,11 +19,14 @@ POST {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "name": "Kaio Jorge",
-  "email": "fazoK@email.com",
-  "password": "artilheirodoBR",
+  "name": "CheChe Arroyo",
+  "email": "arroyojr@email.com",
+  "password": "bailamuito",
   "creditCardNetworkId": "4b86bb86-0ad7-4c34-acc0-70fd333f53f8"
 }
 
 ###
 GET {{urlServer}}/users/8d2ed809-3ddf-47ba-805c-3d57afdecb7c
+
+###
+GET {{urlServer}}/users/name/Matheus

@@ -1,6 +1,7 @@
 package br.edu.ufop.web.users.controller;
 
 import br.edu.ufop.web.users.dto.CreateUserDTO;
+import br.edu.ufop.web.users.dto.UpdateUserDTO;
 import br.edu.ufop.web.users.dto.UserDTO;
 import br.edu.ufop.web.users.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -51,5 +52,11 @@ public class UserController {
         }
 
         return ResponseEntity.ok(userDTOList);
+    }
+
+    @PutMapping
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UpdateUserDTO updateUserDTO) {
+        UserDTO userDTO = userService.updateUser(updateUserDTO);
+        return ResponseEntity.ok(userDTO);
     }
 }

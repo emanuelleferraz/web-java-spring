@@ -4,6 +4,8 @@ import br.edu.ufop.web.users.entity.UserEntity;
 import org.apache.catalina.User;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +15,7 @@ public interface IUserRepository extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findByName(String name);
     List<UserEntity> findAllByNameContainingIgnoreCase(String name);
 
+//    @Query(value = "SELECT * FROM tb_users WHERE name LIKE %:name%", nativeQuery = true)
+//    List<UserEntity> findAllNameLike(@Param("name") String name);
 }
+
