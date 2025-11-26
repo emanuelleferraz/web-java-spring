@@ -1,6 +1,7 @@
 package br.edu.ufop.web.users.controller;
 
 import br.edu.ufop.web.users.dto.CreateUserDTO;
+import br.edu.ufop.web.users.dto.DeleteUserDTO;
 import br.edu.ufop.web.users.dto.UpdateUserDTO;
 import br.edu.ufop.web.users.dto.UserDTO;
 import br.edu.ufop.web.users.service.UserService;
@@ -58,5 +59,14 @@ public class UserController {
     public ResponseEntity<UserDTO> updateUser(@RequestBody UpdateUserDTO updateUserDTO) {
         UserDTO userDTO = userService.updateUser(updateUserDTO);
         return ResponseEntity.ok(userDTO);
+    }
+
+    // PUT para atualizar email, senha, número do cartão de crédito, bandeira do cartão de crédito
+
+    // Delete
+    @DeleteMapping
+    public ResponseEntity<Void> deleteUser(@RequestBody DeleteUserDTO deleteUserDTO) {
+        UserDTO userDTO = userService.delete(deleteUserDTO);
+        return ResponseEntity.ok().build();
     }
 }

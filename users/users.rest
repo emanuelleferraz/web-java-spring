@@ -19,9 +19,9 @@ POST {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "name": "CheChe Arroyo",
-  "email": "arroyojr@email.com",
-  "password": "bailamuito",
+  "name": "Carlos Eduardo",
+  "email": "ruimdebola@email.com",
+  "password": "souruim",
   "creditCardNetworkId": "4b86bb86-0ad7-4c34-acc0-70fd333f53f8"
 }
 
@@ -30,3 +30,22 @@ GET {{urlServer}}/users/8d2ed809-3ddf-47ba-805c-3d57afdecb7c
 
 ###
 GET {{urlServer}}/users/name/Matheus
+
+###
+PUT {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "id": "baf08b4a-7492-4d7b-81ce-4c23aa4a9035",
+  "name": "Arroyo Jr",
+  "city": "Belo Horizonte"
+}
+
+###
+DELETE {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "id":  "5f3cfbc5-763d-4297-848f-1222afb14880",
+  "password": "souruim"
+}

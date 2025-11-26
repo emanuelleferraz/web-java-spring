@@ -4,6 +4,7 @@ import br.edu.ufop.web.users.converter.UserConverter;
 import br.edu.ufop.web.users.domain.UserDomain;
 import br.edu.ufop.web.users.domain.usecase.CreateUserUseCase;
 import br.edu.ufop.web.users.dto.CreateUserDTO;
+import br.edu.ufop.web.users.dto.DeleteUserDTO;
 import br.edu.ufop.web.users.dto.UpdateUserDTO;
 import br.edu.ufop.web.users.dto.UserDTO;
 import br.edu.ufop.web.users.entity.UserEntity;
@@ -78,5 +79,20 @@ public class UserService {
         repository.save(userEntity);
 
         return UserConverter.toUserDTO(userEntity);
+    }
+
+    public UserDTO delete(DeleteUserDTO deleteUserDTO) {
+        Optional<UserEntity> userEntityOptional = repository.findById(deleteUserDTO.id());
+        if (userEntityOptional.isEmpty()) {
+            throw  new UseCaseException("User ID does not found.");
+        }
+
+        UserEntity userEntity = userEntityOptional.get();
+        if (!userEntity.getPassword().equals(deleteUserDTO.password())) {
+            throw  new UseCaseException("Invalid password.");
+        }
+
+        repository.delete(userEntity);
+        return null;
     }
 }
