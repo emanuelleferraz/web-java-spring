@@ -50,4 +50,12 @@ public class UserService {
         UserDTO userDTO = UserConverter.toUserDTO(userEntityOptional.get());
         return Optional.of(userDTO);
     }
+
+    public List<UserDTO> getByName(String name) {
+        List<UserEntity> userEntityList = repository.findAllByNameContainingIgnoreCase(name);
+
+        return userEntityList.stream()
+                .map(UserConverter::toUserDTO)
+                .toList();
+    }
 }

@@ -42,4 +42,14 @@ public class UserController {
 
         return ResponseEntity.ok(userDTOOptional.get());
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<UserDTO>> getByName(@PathVariable(value = "name") String name) {
+        List<UserDTO> userDTOList = userService.getByName(name);
+        if (userDTOList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(userDTOList);
+    }
 }
