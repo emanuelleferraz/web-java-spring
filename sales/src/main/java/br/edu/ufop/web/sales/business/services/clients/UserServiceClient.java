@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(url = "http://localhost:3000")
+@FeignClient(name="users-service", url = "http://localhost:3000")
 public interface UserServiceClient {
     @GetMapping("/users")
     public List<UserServiceDTO> getAllUsers();
