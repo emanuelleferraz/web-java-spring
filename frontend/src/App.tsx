@@ -1,4 +1,5 @@
 import {Button} from "@/components/ui/button.tsx";
+import ListUsers from "@/pages/users/ListUsers.tsx";
 
 function App() {
    return (
@@ -8,6 +9,8 @@ function App() {
            <Button>
                Login
            </Button>
+
+           <ListUsers/>
        </>
    )
 }
