@@ -1,18 +1,16 @@
-import {Button} from "@/components/ui/button.tsx";
-import ListUsers from "@/pages/users/ListUsers.tsx";
+import AppHeader from "./components/AppHeader"
+import { Button } from "./components/ui/button"
 
 function App() {
-   return (
-       <>
-           <h1 className="text-3xl font-bold">Sistema de Vendas Tickets</h1>
 
-           <Button>
-               Login
-           </Button>
+    return (
+        <>
+            <AppHeader title="Página principal" />
 
-           <ListUsers/>
-       </>
-   )
+            <Button>Login</Button>
+
+        </>
+    )
 }
 
 export default App
