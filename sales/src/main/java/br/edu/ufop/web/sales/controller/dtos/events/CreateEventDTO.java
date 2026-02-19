@@ -24,6 +24,7 @@ public class CreateEventDTO {
     private LocalDateTime startingSales;
     private LocalDateTime endingSales;
 
+    private String location;
     private Float price;
 
 }

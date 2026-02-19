@@ -3,6 +3,7 @@ package br.edu.ufop.web.sales.business.services;
 import br.edu.ufop.web.sales.business.converters.EventConverter;
 import br.edu.ufop.web.sales.controller.dtos.events.CreateEventDTO;
 import br.edu.ufop.web.sales.controller.dtos.events.EventDTO;
+import br.edu.ufop.web.sales.controller.dtos.events.UpdateEventDTO;
 import br.edu.ufop.web.sales.enums.EnumEventType;
 import br.edu.ufop.web.sales.infrastructure.entities.EventEntity;
 import br.edu.ufop.web.sales.infrastructure.repositories.IEventRepository;
@@ -50,7 +51,7 @@ public class EventService {
         return EventConverter.toDTO(eventEntity);
     }
 
-    public EventDTO update(UUID id, CreateEventDTO dto) {
+    public EventDTO update(UUID id, UpdateEventDTO dto) {
         EventEntity eventEntity = eventRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
 
@@ -59,6 +60,7 @@ public class EventService {
         eventEntity.setDateTime(dto.getDateTime());
         eventEntity.setStartingSales(dto.getStartingSales());
         eventEntity.setEndingSales(dto.getEndingSales());
+        eventEntity.setLocation(dto.getLocation());
         eventEntity.setPrice(dto.getPrice());
 
         eventEntity = eventRepository.save(eventEntity);

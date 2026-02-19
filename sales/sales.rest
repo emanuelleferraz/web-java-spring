@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:4000
+###
+
+###
+### @eventId = 3967901f-f286-42fa-9f69-ca2c7571b000
+
+###
+####################### EVENTS ######################
+### CRIAR EVENTOS
+POST {{baseUrl}}/events
+Content-Type: application/json
+
+{
+  "description": "Show do Imagine Dragons",
+  "type": 2,
+  "dateTime": "2026-03-10T20:00:00",
+  "startingSales": "2026-02-01T00:00:00",
+  "endingSales": "2026-03-09T23:59:00",
+  "location": "Belo Horizonte",
+  "price": 300.0
+}
+
+###
+
+### LISTAR EVENTOS
+GET {{baseUrl}}/events
+
+###
+
+### DELETE
+DELETE {{baseUrl}}/events/{{eventId}}
+

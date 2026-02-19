@@ -19,6 +19,7 @@ public class EventConverter {
                 .dateTime(eventEntity.getDateTime())
                 .startingSales(eventEntity.getStartingSales())
                 .endingSales(eventEntity.getEndingSales())
+                .location(eventEntity.getLocation())
                 .price(eventEntity.getPrice())
                 .createdAt(eventEntity.getCreatedAt())
                 .updatedAt(eventEntity.getUpdatedAt())
@@ -34,6 +35,7 @@ public class EventConverter {
                 .startingSales(createEventDTO.getStartingSales())
                 .endingSales(createEventDTO.getEndingSales())
                 .price(createEventDTO.getPrice())
+                .location(createEventDTO.getLocation())
                 .build();
     }
 

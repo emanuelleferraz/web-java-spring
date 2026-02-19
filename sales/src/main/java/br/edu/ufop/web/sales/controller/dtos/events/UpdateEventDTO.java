@@ -1,23 +1,21 @@
 package br.edu.ufop.web.sales.controller.dtos.events;
 
-import br.edu.ufop.web.sales.enums.EnumEventType;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EventDTO {
-
-    private UUID id;
+public class UpdateEventDTO {
 
     private String description;
 
-    private EnumEventType type;
+    private Integer type;
 
     private LocalDateTime dateTime;
 
@@ -25,9 +23,6 @@ public class EventDTO {
     private LocalDateTime endingSales;
 
     private String location;
+
     private Float price;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
 }

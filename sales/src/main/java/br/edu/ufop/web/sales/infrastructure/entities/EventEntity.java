@@ -30,6 +30,7 @@ public class EventEntity {
     private LocalDateTime startingSales;
     private LocalDateTime endingSales;
 
+    private String location;
     private Float price;
 
     private LocalDateTime createdAt;

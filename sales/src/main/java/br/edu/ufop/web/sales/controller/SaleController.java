@@ -3,6 +3,7 @@ package br.edu.ufop.web.sales.controller;
 import br.edu.ufop.web.sales.business.services.SaleService;
 import br.edu.ufop.web.sales.controller.dtos.sales.CreateSaleDTO;
 import br.edu.ufop.web.sales.controller.dtos.sales.SaleDTO;
+import br.edu.ufop.web.sales.controller.dtos.sales.UpdateSaleDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class SaleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SaleDTO> update(@PathVariable UUID id ,@RequestBody CreateSaleDTO dto) {
+    public ResponseEntity<SaleDTO> update(@PathVariable UUID id ,@RequestBody UpdateSaleDTO dto) {
         return ResponseEntity.ok(saleService.update(id, dto));
     }
 

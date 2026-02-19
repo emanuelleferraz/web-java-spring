@@ -3,6 +3,7 @@ package br.edu.ufop.web.sales.business.services;
 import br.edu.ufop.web.sales.business.converters.SaleConverter;
 import br.edu.ufop.web.sales.controller.dtos.sales.CreateSaleDTO;
 import br.edu.ufop.web.sales.controller.dtos.sales.SaleDTO;
+import br.edu.ufop.web.sales.controller.dtos.sales.UpdateSaleDTO;
 import br.edu.ufop.web.sales.infrastructure.entities.EventEntity;
 import br.edu.ufop.web.sales.infrastructure.entities.SaleEntity;
 import br.edu.ufop.web.sales.infrastructure.repositories.ISaleRepository;
@@ -57,7 +58,7 @@ public class SaleService {
     }
 
     @Transactional
-    public SaleDTO update(UUID id, CreateSaleDTO dto) {
+    public SaleDTO update(UUID id, UpdateSaleDTO dto) {
         SaleEntity saleEntity = saleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sale not found."));
 
