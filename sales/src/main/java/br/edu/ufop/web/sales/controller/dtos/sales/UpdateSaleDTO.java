@@ -1,5 +1,6 @@
 package br.edu.ufop.web.sales.controller.dtos.sales;
 
+import br.edu.ufop.web.sales.enums.EnumSaleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,6 @@ import java.util.UUID;
 @Builder
 public class UpdateSaleDTO {
 
-    private UUID userId;
-    private UUID eventId;
+    private EnumSaleStatus status;
+
 }

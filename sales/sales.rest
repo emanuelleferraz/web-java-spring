@@ -2,52 +2,67 @@
 ###
 
 ###
-@eventId = 7a86ef6c-eb99-4289-94dc-be430666958c
+@saleId = 6a3143ad-0431-41bd-b2b1-fc294704cac8
+###
 
 ###
-####################### EVENTS ######################
-### CRIAR EVENTOS
-POST {{baseUrl}}/events
+####################### SALES ######################
+###
+
+### CRIAR VENDAS
+POST {{baseUrl}}/sales
 Content-Type: application/json
 
 {
-  "description": "Curso Ciência de Dados",
-  "type": 4,
-  "dateTime": "2026-03-10T10:00:00",
-  "startingSales": "2026-02-10T00:00:00",
-  "endingSales": "2026-03-09T23:59:00",
-  "location": "Rio de Janeiro - UFRJ",
-  "price": 50.0
+  "userId": "46f4b62c-963f-42bb-97cf-7cd00a023b27",
+  "eventId": "3d74a3fb-34b2-42da-bbc9-575f0972e316"
 }
 
 ###
 
-### LISTAR EVENTOS
-GET {{baseUrl}}/events
+###
+### BUSCAR VENDAS
+GET {{baseUrl}}/sales
 
 ###
 
-### LISTAR POR ID
-GET {{baseUrl}}/events/{{eventId}}
+###
+### BUSCAR POR ID
+GET {{baseUrl}}/sales/{{saleId}}
 
 ###
 
-### ATUALIZAR EVENTO
-PUT {{baseUrl}}/events/{{eventId}}
+### ATUALIZAR STATUS (SIMULAR PAGAMENTO)
+PUT {{baseUrl}}/sales/{{saleId}}
 Content-Type: application/json
 
 {
-  "description": "Show do Imagine Dragons",
-  "type": 2,
-  "dateTime": "2026-03-10T20:00:00",
-  "startingSales": "2026-02-01T00:00:00",
-  "endingSales": "2026-03-09T23:59:00",
-  "location": "Belo Horizonte - Mineirão",
-  "price": 300.0
+  "status": "PAGO"
 }
 
 ###
 
-### DELETE
-DELETE {{baseUrl}}/events/{{eventId}}
+### CANCELAR VENDA
+PUT {{baseUrl}}/sales/{{saleId}}
+Content-Type: application/json
 
+{
+  "status": "CANCELADO"
+}
+
+###
+
+### ESTORNAR VENDA
+PUT {{baseUrl}}/sales/{{saleId}}
+Content-Type: application/json
+
+{
+  "status": "ESTORNADO"
+}
+
+###
+
+### DELETAR VENDA
+DELETE {{baseUrl}}/sales/{{saleId}}
+
+###

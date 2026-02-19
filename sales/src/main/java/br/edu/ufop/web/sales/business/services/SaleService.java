@@ -4,6 +4,7 @@ import br.edu.ufop.web.sales.business.converters.SaleConverter;
 import br.edu.ufop.web.sales.controller.dtos.sales.CreateSaleDTO;
 import br.edu.ufop.web.sales.controller.dtos.sales.SaleDTO;
 import br.edu.ufop.web.sales.controller.dtos.sales.UpdateSaleDTO;
+import br.edu.ufop.web.sales.enums.EnumSaleStatus;
 import br.edu.ufop.web.sales.infrastructure.entities.EventEntity;
 import br.edu.ufop.web.sales.infrastructure.entities.SaleEntity;
 import br.edu.ufop.web.sales.infrastructure.repositories.ISaleRepository;
@@ -59,16 +60,21 @@ public class SaleService {
 
     @Transactional
     public SaleDTO update(UUID id, UpdateSaleDTO dto) {
+
         SaleEntity saleEntity = saleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sale not found."));
 
-        EventEntity eventEntity = eventService.getById(dto.getEventId())
-                .orElseThrow(() -> new RuntimeException("Event does not exists."));
+        if (dto.getStatus() != null) {
 
-        saleEntity.setUserId(dto.getUserId());
-        saleEntity.setEvent(eventEntity);
+            // Regra: só pode pagar se estiver EM_ABERTO
+            if (dto.getStatus() == EnumSaleStatus.PAGO &&
+                    saleEntity.getStatus() != EnumSaleStatus.EM_ABERTO) {
 
-        saleEntity = saleRepository.save(saleEntity);
+                throw new RuntimeException("Only open sales can be paid.");
+            }
+
+            saleEntity.setStatus(dto.getStatus());
+        }
 
         return SaleConverter.toDTO(saleEntity);
     }

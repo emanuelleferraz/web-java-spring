@@ -20,8 +20,8 @@ Content-Type: application/json
 
 {
   "name": "Carlos Eduardo",
-  "email": "ruimdebola@email.com",
-  "password": "souruim",
+  "email": "cadu@email.com",
+  "password": "jogobola",
   "creditCardNetworkId": "4b86bb86-0ad7-4c34-acc0-70fd333f53f8"
 }
 
