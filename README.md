@@ -1,6 +1,6 @@
 # **🎫 Sistema de Vendas de Ingressos**
 
-Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *framework* **Spring Boot**, **Docker** e arquitetura de **microsserviços**.
+Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *framework* **Spring Boot**, **Docker** e arquitetura de **microsserviços**. Desenvolvido na discplina de **CSI607 - Sistemas Web II**.
 
 ## Tecnologias Utilizadas
 - Java 17.x
@@ -9,6 +9,16 @@ Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *
 - Spring JPA
 - React.js
 - Docker
+- PostgreSQL
+
+## Estrutura de Microsserviços
+```bash         
+└── tickets/
+    ├── users/          
+    ├── sales/       
+    ├── gateway/           
+    └── nameserver/             
+```
 
 ## Endpoints da Aplicação
 > Base URLs:
@@ -17,7 +27,7 @@ Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *
   Events & Sales Service: http://localhost:4000
 ```
 ### 🎟️ Event
-```bash
+```http request
 POST   /events
 GET    /events
 GET    /events/{id}
@@ -26,7 +36,7 @@ DELETE /events/{id}
 ```
 
 ### 🛍️ Sales
-```bash
+```http request
 POST   /sales
 GET    /sales
 GET    /sales/{id}
@@ -35,7 +45,7 @@ DELETE /sales/{id}
 ```
 
 ### 👤 Users
-```bash
+```http request
 # Users
 GET    /users
 GET    /users/{id}
