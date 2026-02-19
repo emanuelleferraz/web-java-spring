@@ -2,7 +2,7 @@
 ###
 
 ###
-### @eventId = 3967901f-f286-42fa-9f69-ca2c7571b000
+@eventId = 7a86ef6c-eb99-4289-94dc-be430666958c
 
 ###
 ####################### EVENTS ######################
@@ -11,19 +11,40 @@ POST {{baseUrl}}/events
 Content-Type: application/json
 
 {
-  "description": "Show do Imagine Dragons",
-  "type": 2,
-  "dateTime": "2026-03-10T20:00:00",
-  "startingSales": "2026-02-01T00:00:00",
+  "description": "Curso Ciência de Dados",
+  "type": 4,
+  "dateTime": "2026-03-10T10:00:00",
+  "startingSales": "2026-02-10T00:00:00",
   "endingSales": "2026-03-09T23:59:00",
-  "location": "Belo Horizonte",
-  "price": 300.0
+  "location": "Rio de Janeiro - UFRJ",
+  "price": 50.0
 }
 
 ###
 
 ### LISTAR EVENTOS
 GET {{baseUrl}}/events
+
+###
+
+### LISTAR POR ID
+GET {{baseUrl}}/events/{{eventId}}
+
+###
+
+### ATUALIZAR EVENTO
+PUT {{baseUrl}}/events/{{eventId}}
+Content-Type: application/json
+
+{
+  "description": "Show do Imagine Dragons",
+  "type": 2,
+  "dateTime": "2026-03-10T20:00:00",
+  "startingSales": "2026-02-01T00:00:00",
+  "endingSales": "2026-03-09T23:59:00",
+  "location": "Belo Horizonte - Mineirão",
+  "price": 300.0
+}
 
 ###
 

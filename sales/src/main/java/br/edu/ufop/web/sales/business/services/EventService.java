@@ -56,7 +56,7 @@ public class EventService {
                 .orElseThrow(() -> new RuntimeException("Event not found"));
 
         eventEntity.setDescription(dto.getDescription());
-        eventEntity.setType(EnumEventType.values()[dto.getType()]);
+        eventEntity.setType(EnumEventType.getById(dto.getType()));
         eventEntity.setDateTime(dto.getDateTime());
         eventEntity.setStartingSales(dto.getStartingSales());
         eventEntity.setEndingSales(dto.getEndingSales());
