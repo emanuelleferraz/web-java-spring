@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +47,36 @@ public class SaleService {
         saleRepository.save(saleEntity);
         return SaleConverter.toDTO(saleEntity);
 
+    }
+
+    public SaleDTO getById(UUID id) {
+        SaleEntity saleEntity = saleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sale not found."));
+
+        return SaleConverter.toDTO(saleEntity);
+    }
+
+    @Transactional
+    public SaleDTO update(UUID id, CreateSaleDTO dto) {
+        SaleEntity saleEntity = saleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sale not found."));
+
+        EventEntity eventEntity = eventService.getById(dto.getEventId())
+                .orElseThrow(() -> new RuntimeException("Event does not exists."));
+
+        saleEntity.setUserId(dto.getUserId());
+        saleEntity.setEvent(eventEntity);
+
+        saleEntity = saleRepository.save(saleEntity);
+
+        return SaleConverter.toDTO(saleEntity);
+    }
+
+    public void delete(UUID id) {
+        SaleEntity saleEntity = saleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sale not found"));
+
+        saleRepository.delete(saleEntity);
     }
 
 }

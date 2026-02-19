@@ -33,7 +33,7 @@ public class CreateUserUseCase {
 
     private void validateName() {
         if (this.userDomain.getName() == null) {
-            throw new RuntimeException("Name is null");
+            throw new UseCaseException("Name is null");
         }
     }
 
