@@ -12,10 +12,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface IUserRepository extends JpaRepository<UserEntity, UUID> {
+
+    // Buscar usuário pelo nome exato
     Optional<UserEntity> findByName(String name);
+
+    // Buscar usuários cujo nome contém uma string (ignore case)
     List<UserEntity> findAllByNameContainingIgnoreCase(String name);
 
-//    @Query(value = "SELECT * FROM tb_users WHERE name LIKE %:name%", nativeQuery = true)
-//    List<UserEntity> findAllNameLike(@Param("name") String name);
+    // Buscar usuário pelo email exato
+    Optional<UserEntity> findByEmail(String email);
+
 }
+
 

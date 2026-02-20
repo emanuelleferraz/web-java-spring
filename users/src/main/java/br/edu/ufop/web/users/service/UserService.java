@@ -81,6 +81,10 @@ public class UserService {
         return UserConverter.toUserDTO(userEntity);
     }
 
+    public Optional<UserEntity> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     public UserDTO delete(DeleteUserDTO deleteUserDTO) {
         Optional<UserEntity> userEntityOptional = repository.findById(deleteUserDTO.id());
         if (userEntityOptional.isEmpty()) {

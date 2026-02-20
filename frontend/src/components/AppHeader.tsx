@@ -5,30 +5,33 @@ interface AppHeaderInterface {
 }
 
 const AppHeader = ({ title } : AppHeaderInterface) => {
-
-    let renderTitle
-    if (title !== undefined) {
-        renderTitle =
-            <div className="flex justify-center">
-                <h2 className="text-xl font-bold">{ title }</h2>
-            </div>
-    }
-
     return (
-        <>
-            <header>
-                <h1 className="text-3xl font-extrabold text-indigo-800">Sistema de Vendas de Tickets</h1>
-                <div>
-                    {/* Menu da aplicação */}
-                    <Menu />
+        <header className="bg-white border-b shadow-sm p-4">
+            <div className="container mx-auto flex items-center justify-between">
+                {/* Logo alinhada com o Login */}
+                <div className="flex items-center gap-2">
+                    <span className="text-2xl">🎟️</span>
+                    <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+                        EventPass
+                    </h1>
+                    <span className="ml-2 text-xs font-medium text-muted-foreground hidden md:block">
+                        | Sistema Administrativo
+                    </span>
                 </div>
-            </header>
 
-            { renderTitle }
+                {/* Menu da aplicação */}
+                <nav>
+                    <Menu />
+                </nav>
+            </div>
 
-        </>
-    )
+            {title && (
+                <div className="mt-4 flex justify-center">
+                    <h2 className="text-lg font-semibold text-slate-700">{title}</h2>
+                </div>
+            )}
+        </header>
+    );
+};
 
-}
-
-export default AppHeader
+export default AppHeader;

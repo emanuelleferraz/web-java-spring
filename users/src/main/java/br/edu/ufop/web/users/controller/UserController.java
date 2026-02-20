@@ -4,6 +4,7 @@ import br.edu.ufop.web.users.dto.CreateUserDTO;
 import br.edu.ufop.web.users.dto.DeleteUserDTO;
 import br.edu.ufop.web.users.dto.UpdateUserDTO;
 import br.edu.ufop.web.users.dto.UserDTO;
+import br.edu.ufop.web.users.entity.UserEntity;
 import br.edu.ufop.web.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +61,28 @@ public class UserController {
         UserDTO userDTO = userService.updateUser(updateUserDTO);
         return ResponseEntity.ok(userDTO);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody LoginRequest loginRequest) {
+        // Buscar usuário pelo email
+        Optional<UserEntity> userOpt = userService.findByEmail(loginRequest.email());
+
+        if (userOpt.isEmpty() || !userOpt.get().getPassword().equals(loginRequest.password())) {
+            // 401 Unauthorized se email ou senha estiverem errados
+            return ResponseEntity.status(401).build();
+        }
+
+        UserEntity user = userOpt.get();
+
+        // Converte para DTO
+        UserDTO userDTO = new UserDTO(user.getId(), user.getName(), user.getEmail());
+
+        return ResponseEntity.ok(userDTO);
+    }
+
+
+    // Classe interna para requisição de login
+    public record LoginRequest(String email, String password) {}
 
     // PUT para atualizar email, senha, número do cartão de crédito, bandeira do cartão de crédito
 

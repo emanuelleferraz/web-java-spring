@@ -1,16 +1,9 @@
-import AppHeader from "./components/AppHeader"
-import { Button } from "./components/ui/button"
+import { AppRoutes } from "./routes";
 
 function App() {
-
     return (
-        <>
-            <AppHeader title="Página principal" />
-
-            <Button>Login</Button>
-
-        </>
-    )
+        <AppRoutes />
+    );
 }
 
-export default App
+export default App;
