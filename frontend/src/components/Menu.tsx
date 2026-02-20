@@ -14,7 +14,7 @@ const Menu = () => {
             <Link to="/home" className="text-white hover:text-gray-300 transition-colors">Home</Link>
             <Link to="/users" className="text-white hover:text-gray-300 transition-colors">Usuários</Link>
             <Link to="/events" className="text-white hover:text-gray-300 transition-colors">Eventos</Link>
-            <Link to="#" className="text-white hover:text-gray-300 transition-colors">Vendas</Link>
+            <Link to="/sales" className="text-white hover:text-gray-300 transition-colors">Vendas</Link>
 
             {/* Botão de Logout */}
             <Button

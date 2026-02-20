@@ -19,7 +19,7 @@ export default function Login() {
         setError(null); // Limpa erro anterior
 
         try {
-            const response = await api.post("/api/users/login", { email, password });
+            const response = await api.post("/users/login", { email, password });
             localStorage.setItem("@EventPass:user", JSON.stringify(response.data));
 
             // Agora redireciona para a home/dashboard que tem o Header

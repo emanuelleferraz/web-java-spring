@@ -17,9 +17,9 @@ const ListUsers = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        api.get("/api/users").then((response) => {
+        api.get("/users").then((response) => {
             setUsers(response.data);
-        });
+        }).catch(err => console.error("Erro ao carregar usuários:", err));
     }, []);
 
     const filteredUsers = users.filter((user) =>

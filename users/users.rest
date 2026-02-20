@@ -19,10 +19,10 @@ POST {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "name": "Carlos Eduardo",
-  "email": "cadu@email.com",
-  "password": "jogobola",
-  "creditCardNetworkId": "4b86bb86-0ad7-4c34-acc0-70fd333f53f8"
+  "name": "Ana Flávia",
+  "email": "anaf@email.com",
+  "password": "segundovolante",
+  "creditCardNetworkId": "25435d96-377a-4f86-91f8-767b5a83b5ee"
 }
 
 ###

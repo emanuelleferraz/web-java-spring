@@ -3,6 +3,8 @@ import Login from "./pages/auth/Login";
 import ListUsers from "./pages/users/ListUsers";
 import ListEvents from "./pages/events/ListEvents";
 import EventForm from "./pages/events/EventForm";
+import ListSales from "@/pages/sales/ListSales.tsx";
+import SaleForm from "@/pages/sales/SaleForm.tsx";
 import AppHeader from "./components/AppHeader";
 import Dashboard from "./components/Dashboard";
 import type { JSX } from "react";
@@ -75,6 +77,29 @@ export const AppRoutes = () => {
                             <>
                                 <AppHeader title="Gerenciamento de Usuários" />
                                 <EventForm />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+                {/* Rota de Vendas */}
+                <Route
+                    path="/sales"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <ListSales />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/sales/new"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <SaleForm />
                             </>
                         </PrivateRoute>
                     }

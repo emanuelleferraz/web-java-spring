@@ -110,7 +110,7 @@ const ListEvents = () => {
                             </CardContent>
 
                             <CardFooter className="bg-slate-50/50 p-4 border-t border-slate-100 gap-2">
-                                <Button className="flex-1 bg-black text-white hover:bg-slate-800 font-bold text-xs uppercase">
+                                <Button className="flex-1 bg-black text-white hover:bg-slate-800 font-bold text-xs uppercase" onClick={() => navigate(`/sales/new`)}>
                                     Vender Ingresso
                                 </Button>
                                 <Button

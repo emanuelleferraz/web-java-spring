@@ -18,26 +18,30 @@ public class GatewayApiConfig {
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("users-api", pred ->
-                        pred.path("/api/users/**").filters(filter ->
-                                        filter.rewritePath("/api/users", "/users"))
-                                .uri("lb://users-service")
+                // ROTA DE USUÁRIOS
+                .route("users-api", pred -> pred
+                        .path("/api/users/**")
+                        .filters(f -> f.rewritePath("/api/(?<segment>.*)", "/${segment}"))
+                        .uri("lb://users-service")
+                )
+                // ROTA DE EVENTOS
+                .route("events-api", pred -> pred
+                        .path("/api/sales/events/**")
+                        .filters(f -> f.rewritePath("/api/sales/events(?<segment>.*)", "/events${segment}"))
+                        .uri("lb://sales-service")
                 )
 
-                .route("users", pred ->
-                        pred.path("/users/**").uri("lb://users-service")
+                // ROTA DE VENDAS
+                .route("sales-api", pred -> pred
+                        .path("/api/sales/**")
+                        .filters(f -> f.rewritePath("/api/(?<segment>.*)", "/${segment}"))
+                        .uri("lb://sales-service")
                 )
 
-                .route("sales", pred ->
-                        pred.path("/sales/**")
-                                .filters(filter -> filter.rewritePath("/sales/(?<segment>.*)", "/${segment}"))
-                                .uri("lb://sales-service")
+                // FRONTEND
+                .route("frontend", pred -> pred
+                        .path("/**").uri(this.frontEndUri)
                 )
-
-                .route("frontend", pred ->
-                        pred.path("/**").uri(this.frontEndUri)
-                )
-
                 .build();
     }
 

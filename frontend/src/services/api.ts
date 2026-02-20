@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SERVER = "http://localhost:8080";
+const SERVER = "http://localhost:8080/api";
 
 const api = axios.create({
     baseURL: SERVER,
@@ -10,7 +10,8 @@ const api = axios.create({
 });
 
 const api_fetch = async (endpoint: string, config?: RequestInit) => {
-    const response = await fetch(`${SERVER}${endpoint}`, {
+    const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const response = await fetch(`${SERVER}${path}`, {
         ...config,
         headers: {
             "Content-Type": "application/json",
