@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import ListUsers from "./pages/users/ListUsers";
 import AppHeader from "./components/AppHeader"; // Importe o Header
+import Dashboard from "./components/Dashboard";
 import type { JSX } from "react";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
@@ -23,10 +24,7 @@ export const AppRoutes = () => {
                         <PrivateRoute>
                             <>
                                 <AppHeader title="Painel Principal" />
-                                <div className="p-6">
-                                    <h3 className="text-xl">Bem-vindo ao EventPass!</h3>
-                                    <p className="text-muted-foreground">Selecione uma opção no menu acima.</p>
-                                </div>
+                                <Dashboard />
                             </>
                         </PrivateRoute>
                     }
