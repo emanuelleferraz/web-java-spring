@@ -140,7 +140,7 @@ export default function Dashboard() {
                 </Card>
             </div>
 
-            {/* 3. Tabela - Mais suave, arredondada e fonte ajustada */}
+            {/* 3. Tabela */}
             <Card className="border border-slate-100 shadow-2xl shadow-slate-200/60 rounded-[24px] overflow-hidden bg-white">
                 <div className="bg-black px-6 py-4">
                     <h3 className="font-bold text-white text-sm uppercase tracking-widest italic">

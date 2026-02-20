@@ -29,7 +29,9 @@ public class GatewayApiConfig {
                 )
 
                 .route("sales", pred ->
-                        pred.path("/sales/**").uri("lb://sales-service")
+                        pred.path("/sales/**")
+                                .filters(filter -> filter.rewritePath("/sales/(?<segment>.*)", "/${segment}"))
+                                .uri("lb://sales-service")
                 )
 
                 .route("frontend", pred ->

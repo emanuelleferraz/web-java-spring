@@ -13,14 +13,13 @@ const Menu = () => {
         <nav className="flex items-center gap-6">
             <Link to="/home" className="text-white hover:text-gray-300 transition-colors">Home</Link>
             <Link to="/users" className="text-white hover:text-gray-300 transition-colors">Usuários</Link>
-            <Link to="#" className="text-white hover:text-gray-300 transition-colors">Tickets</Link>
-            <Link to="#" className="text-white hover:text-gray-300 transition-colors">Perfil</Link>
-            <Link to="#" className="text-white hover:text-gray-300 transition-colors">Relatórios</Link>
+            <Link to="/events" className="text-white hover:text-gray-300 transition-colors">Eventos</Link>
+            <Link to="#" className="text-white hover:text-gray-300 transition-colors">Vendas</Link>
 
             {/* Botão de Logout */}
             <Button
                 onClick={handleLogout}
-                className="bg-white text-black hover:bg-gray-200 font-bold ml-4 px-8" // px-8 deixa ele bem mais largo
+                className="bg-white text-black hover:bg-gray-200 font-bold ml-4 px-8"
                 size="sm"
             >
                 Sair

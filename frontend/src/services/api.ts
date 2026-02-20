@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// O SERVER aponta para o seu Spring Cloud Gateway
 const SERVER = "http://localhost:8080";
 
 const api = axios.create({
@@ -10,10 +9,6 @@ const api = axios.create({
     },
 });
 
-/**
- * api_fetch: Uma alternativa nativa ao axios caso precise
- * em contextos específicos (como Server Components se usar Next.js)
- */
 const api_fetch = async (endpoint: string, config?: RequestInit) => {
     const response = await fetch(`${SERVER}${endpoint}`, {
         ...config,

@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import ListUsers from "./pages/users/ListUsers";
-import AppHeader from "./components/AppHeader"; // Importe o Header
+import ListEvents from "./pages/events/ListEvents";
+import EventForm from "./pages/events/EventForm";
+import AppHeader from "./components/AppHeader";
 import Dashboard from "./components/Dashboard";
 import type { JSX } from "react";
 
@@ -17,7 +19,7 @@ export const AppRoutes = () => {
                 {/* Rota de Login */}
                 <Route path="/" element={<Login />} />
 
-                {/* Rota Principal com Header */}
+                {/* Rota Principal*/}
                 <Route
                     path="/home"
                     element={
@@ -30,7 +32,7 @@ export const AppRoutes = () => {
                     }
                 />
 
-                {/* Rota de Usuários (Também com Header) */}
+                {/* Rota de Usuários*/}
                 <Route
                     path="/users"
                     element={
@@ -38,6 +40,41 @@ export const AppRoutes = () => {
                             <>
                                 <AppHeader title="Gerenciamento de Usuários" />
                                 <ListUsers />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* Rota de Eventos */}
+                <Route
+                    path="/events"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <ListEvents />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/events/new"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <EventForm />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/events/edit/:id"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <EventForm />
                             </>
                         </PrivateRoute>
                     }

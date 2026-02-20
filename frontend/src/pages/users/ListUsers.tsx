@@ -30,7 +30,7 @@ const ListUsers = () => {
     return (
         <div className="p-8 max-w-[1600px] mx-auto space-y-8 bg-white font-sans">
 
-            {/* Cabeçalho Minimalista */}
+            {/* Cabeçalho */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-black">Usuários</h1>
@@ -50,10 +50,9 @@ const ListUsers = () => {
                 </div>
             </div>
 
-            {/* Tabela Refinada */}
+            {/* Tabela */}
             <div className="rounded-md border border-slate-200 shadow-sm overflow-hidden">
                 <Table>
-                    {/* Cabeçalho Preto com Texto Branco e Altura Reduzida */}
                     <TableHeader className="bg-black hover:bg-black">
                         <TableRow className="hover:bg-transparent border-none">
                             <TableHead className="w-[80px] font-bold text-white h-10 px-6 text-[12px] uppercase tracking-wider">
