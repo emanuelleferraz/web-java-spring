@@ -2,7 +2,7 @@
 
 Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *framework* **Spring Boot**, **Docker** e arquitetura de **microsserviços**. Desenvolvido na discplina de **CSI607 - Sistemas Web II**.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 - Java 17.x
 - Spring Boot 3.5.8
 - Spring Web
@@ -11,16 +11,14 @@ Aplicação de Vendas de Ingressos (Tickets) desenvolvida em Java utilizando o *
 - Docker
 - PostgreSQL
 
-## Estrutura de Microsserviços
-```bash         
-└── tickets/
-    ├── users/          
-    ├── sales/       
-    ├── gateway/           
-    └── nameserver/             
-```
+## 🏗️ Arquitetura de Microsserviços
+O ecossistema é composto por 4 serviços principais:
+- **Users Service**: Gestão de usuários e autenticação.
+- **Sales Service**: Regras de negócio para eventos e vendas de ingressos.
+- **Gateway (Spring Cloud Gateway)**: Ponto único de entrada, roteamento e segurança.
+- **Nameserver (Eureka)**: Descoberta de serviços para comunicação inter-serviços.
 
-## Endpoints da Aplicação
+## 🔗 Endpoints da Aplicação
 > Base URLs:
 ```
   Users Service: http://localhost:3000
@@ -57,5 +55,28 @@ DELETE /users
 # Credit Card Network (CCN)
 GET    /ccn
 POST   /ccn
+```
+
+## 🚀 Como Executar
+1. Certifique-se de ter o **Docker** e **Java** instalado.
+2. Na raiz do projeto, execute:
+   ```bash
+   docker-compose up --build
+3. Os seguintes serviços estarão disponíveis, inicialize-os:
+- Nameserver
+- Users
+- Sales
+- Gateway
+4. O frontend está disponível em:
+```http request
+http://localhost:5173
+```
+5. O nameserver está disponível em:
+```http request
+http://localhost:8761
+```
+6. API Gateway:
+```http request
+http://localhost:8080/api
 ```
 

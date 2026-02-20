@@ -5,13 +5,14 @@ import { type UserInterface } from "@/types/users";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const ListSales = () => {
     const navigate = useNavigate();
     const [sales, setSales] = useState<SaleInterface[]>([]);
     const [users, setUsers] = useState<UserInterface[]>([]);
+    const [updatingId, setUpdatingId] = useState<string | null>(null);
 
     useEffect(() => {
         Promise.all([
@@ -28,17 +29,26 @@ const ListSales = () => {
         return user ? user.name : "Usuário não encontrado";
     };
 
-    const handleStatusChange = async (saleId: string, newStatusId: number) => {
+    const handleStatusChange = async (saleId: string, newStatusName: string) => {
+        setUpdatingId(saleId);
         try {
-            // Endpoint de alteração de status
-            await api.put(`sales/${saleId}`, { status: newStatusId });
+            // Agora enviando a STRING da constante, exatamente como no seu arquivo .rest
+            await api.put(`/sales/${saleId}`, {
+                status: newStatusName
+            });
 
-            const statusKeys = Object.keys(SaleStatusLabels);
-            setSales(sales.map(s =>
-                s.id === saleId ? { ...s, status: statusKeys[newStatusId-1] as any } : s
+            // Atualiza o estado local para refletir a mudança
+            setSales(prev => prev.map(s =>
+                s.id === saleId ? { ...s, status: newStatusName as any } : s
             ));
-        } catch (error) {
-            console.error("Erro ao alterar status", error);
+
+        } catch (error: any) {
+            console.error("Erro ao alterar status:", error.response?.data);
+            // Captura a mensagem de erro do Java (ex: "Only open sales can be paid.")
+            const errorMsg = error.response?.data?.message || "Erro ao atualizar status.";
+            alert(errorMsg);
+        } finally {
+            setUpdatingId(null);
         }
     };
 
@@ -58,17 +68,17 @@ const ListSales = () => {
                 <Table>
                     <TableHeader className="bg-black">
                         <TableRow>
-                            <TableHead className="text-white font-bold h-10 px-6 text-[12px] uppercase">ID Venda</TableHead>
-                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase">Evento</TableHead>
-                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase">Comprador</TableHead>
-                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase">Data/Hora</TableHead>
-                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase text-center">Status</TableHead>
-                            <TableHead className="text-white font-bold h-10 px-6 text-[12px] uppercase text-right">Ações</TableHead>
+                            <TableHead className="text-white font-bold h-10 px-6 text-[12px] uppercase tracking-wider">ID Venda</TableHead>
+                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase tracking-wider">Evento</TableHead>
+                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase tracking-wider">Comprador</TableHead>
+                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase tracking-wider">Data/Hora</TableHead>
+                            <TableHead className="text-white font-bold h-10 text-[12px] uppercase tracking-wider text-center">Status</TableHead>
+                            <TableHead className="text-white font-bold h-10 px-6 text-[12px] uppercase tracking-wider text-right">Ações</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {sales.map((sale) => (
-                            <TableRow key={sale.id} className="hover:bg-slate-50">
+                            <TableRow key={sale.id} className="hover:bg-slate-50 transition-colors">
                                 <TableCell className="font-mono text-[10px] text-slate-400 px-6 italic">#{sale.id.slice(-6)}</TableCell>
                                 <TableCell className="font-bold text-slate-900">
                                     <div className="flex flex-col">
@@ -76,24 +86,28 @@ const ListSales = () => {
                                         <span className="text-[10px] text-slate-400 font-normal">{sale.event.location}</span>
                                     </div>
                                 </TableCell>
-                                <TableCell className="text-sm">{getUserName(sale.userId)}</TableCell>
-                                <TableCell className="text-sm">{new Date(sale.dateTime).toLocaleString('pt-BR')}</TableCell>
+                                <TableCell className="text-[13px]">{getUserName(sale.userId)}</TableCell>
+                                <TableCell className="text-[13px] text-slate-600">{new Date(sale.dateTime).toLocaleString('pt-BR')}</TableCell>
                                 <TableCell className="text-center">
-                                    <Badge className={`border ${SaleStatusColors[sale.status]} shadow-none`}>
+                                    <Badge className={`border shadow-none font-bold text-[10px] ${SaleStatusColors[sale.status]}`}>
                                         {SaleStatusLabels[sale.status]}
                                     </Badge>
                                 </TableCell>
                                 <TableCell className="text-right px-6">
-                                    <select
-                                        className="text-[11px] font-bold border rounded px-2 py-1 bg-white"
-                                        onChange={(e) => handleStatusChange(sale.id, Number(e.target.value))}
-                                        value={Object.keys(SaleStatusLabels).indexOf(sale.status) + 1}
-                                    >
-                                        <option value={1}>EM ABERTO</option>
-                                        <option value={2}>PAGO</option>
-                                        <option value={3}>CANCELADO</option>
-                                        <option value={4}>ESTORNADO</option>
-                                    </select>
+                                    <div className="flex items-center justify-end gap-2">
+                                        {updatingId === sale.id && <Loader2 className="w-3 h-3 animate-spin text-slate-400" />}
+                                        <select
+                                            disabled={updatingId === sale.id}
+                                            className="text-[11px] font-bold border border-slate-200 rounded px-2 py-1 bg-white focus:outline-none focus:ring-1 focus:ring-black disabled:opacity-50"
+                                            onChange={(e) => handleStatusChange(sale.id, e.target.value)}
+                                            value={sale.status}
+                                        >
+                                            <option value="EM_ABERTO">EM ABERTO</option>
+                                            <option value="PAGO">PAGO</option>
+                                            <option value="CANCELADO">CANCELADO</option>
+                                            <option value="ESTORNADO">ESTORNADO</option>
+                                        </select>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}

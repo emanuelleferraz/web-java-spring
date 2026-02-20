@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import ListUsers from "./pages/users/ListUsers";
 import ListEvents from "./pages/events/ListEvents";
+import UserForm from "@/pages/users/UserForm.tsx";
 import EventForm from "./pages/events/EventForm";
 import ListSales from "@/pages/sales/ListSales.tsx";
 import SaleForm from "@/pages/sales/SaleForm.tsx";
@@ -42,6 +43,17 @@ export const AppRoutes = () => {
                             <>
                                 <AppHeader title="Gerenciamento de Usuários" />
                                 <ListUsers />
+                            </>
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/users/edit/:id"
+                    element={
+                        <PrivateRoute>
+                            <>
+                                <AppHeader title="Gerenciamento de Usuários" />
+                                <UserForm />
                             </>
                         </PrivateRoute>
                     }
