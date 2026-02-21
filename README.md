@@ -61,22 +61,22 @@ POST   /ccn
 1. Certifique-se de ter o **Docker** e **Java** instalado.
 2. Na raiz do projeto, execute:
    ```bash
-   docker-compose up --build
+   docker-compose-dev up --build
 3. Os seguintes serviços estarão disponíveis, inicialize-os:
 - Nameserver
 - Users
 - Sales
 - Gateway
 4. O frontend está disponível em:
-```http request
+```http
 http://localhost:5173
 ```
 5. O nameserver está disponível em:
-```http request
+```http
 http://localhost:8761
 ```
 6. API Gateway:
-```http request
+```http
 http://localhost:8080/api
 ```
 
